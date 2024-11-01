@@ -1,11 +1,10 @@
-# `<name of application here>`
+# `AirBenderNB`
 
 ## Database Schema Design
 
 ![db-schema]
 
 [db-schema]: ![DBD for Airbnb](https://github.com/user-attachments/assets/1c921b5e-5fd9-4e6e-bd7c-17d926fdce77)
-
 
 ## API Documentation
 
@@ -100,7 +99,7 @@ information.
 - Request
 
   - Method: POST
-  - Route path: /login/users/:userId
+  - Route path: /login
   - Headers:
     - Content-Type: application/json
   - Body:
@@ -170,7 +169,7 @@ user's information.
 - Request
 
   - Method: POST
-  - Route path: /signup/users
+  - Route path: /signup
   - Headers:
     - Content-Type: application/json
   - Body:
