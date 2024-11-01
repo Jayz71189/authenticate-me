@@ -4,7 +4,9 @@
 
 ![db-schema]
 
-[db-schema]: ./images/example.png
+[db-schema]: 
+![image](https://github.com/user-attachments/assets/cf9fff21-806d-4bf6-82ca-547fe2c589b0)
+
 
 ## API Documentation
 
