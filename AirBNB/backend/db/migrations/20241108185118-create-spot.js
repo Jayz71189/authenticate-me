@@ -28,17 +28,14 @@ module.exports = {
         city: {
           type: Sequelize.STRING(30),
           allowNull: false,
-          unique: true,
         },
         state: {
           type: Sequelize.STRING(30),
           allowNull: false,
-          unique: true,
         },
         country: {
           type: Sequelize.STRING(30),
           allowNull: false,
-          unique: true,
         },
         lat: {
           type: Sequelize.FLOAT,
@@ -47,6 +44,27 @@ module.exports = {
         lng: {
           type: Sequelize.FLOAT,
           allowNull: false,
+        },
+        name: {
+          type: Sequelize.STRING(50),
+          allowNull: false,
+        },
+        description: {
+          type: Sequelize.STRING(50),
+          allowNull: false,
+        },
+        price: {
+          type: Sequelize.NUMERIC,
+          allowNull: false,
+        },
+        avgRating: {
+          type: Sequelize.DECIMAL,
+          allowNull: false,
+          defaultValue: 0,
+        },
+        previewImage: {
+          type: Sequelize.STRING(50),
+          allowNull: true,
         },
         createdAt: {
           allowNull: false,

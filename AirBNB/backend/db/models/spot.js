@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       //     foreignKey: "spotId",
       //   });
       Spot.belongsTo(models.SpotImage, {
-        foreignKey: "spotId",
+        foreignKey: "id",
         as: "PreviewImage",
       });
     }
@@ -36,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       address: {
-        type: DataTypes.CHAR,
+        type: DataTypes.STRING,
         allowNull: false,
       },
       city: {
@@ -105,7 +105,7 @@ module.exports = (sequelize, DataTypes) => {
       //updatedAt: spot.updatedAt,
       avgRating: {
         type: DataTypes.DECIMAL(1, 3),
-        allowNull: false,
+        allowNull: true,
       },
       previewImage: {
         type: DataTypes.STRING,

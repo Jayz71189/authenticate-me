@@ -2,49 +2,48 @@ const express = require("express");
 const router = express.Router();
 
 const { Spot, SpotImage } = require("../../db/models");
-const { requireAuth, requireSpotOwnership } = require("../middleware/auth");
-const { requireAuth } = require("../../utils/auth");
+const { requireAuth, requireSpotOwnership } = require("../../utils/auth");
 
 router.get("/", async (req, res) => {
   const spot = await Spot.findAll({
     order: [["name", "DESC"]],
   });
 
-  //   const safeUser = {
-  //     id: user.id,
-  //     firstName: user.firstName,
-  //     lastName: user.lastName,
-  //     email: user.email,
-  //     username: user.username,
+  //     const safeUser = {
+  //       id: user.id,
+  //       firstName: user.firstName,
+  //       lastName: user.lastName,
+  //       email: user.email,
+  //       username: user.username,
 
-  // id: spot.id,
-  // ownerId: spot.ownerId,
-  // address: spot.address,
-  // city: spot.city,
-  // state: spot.state,
-  // country: spot.country,
-  // lat: spot.lat,
-  // lng: spot.lng,
-  // name: spot.name,
-  // description: spot.description,
-  // price: spot.price,
-  // createdAt: spot.createdAt,
-  // updatedAt: spot.updatedAt,
-  // avgRating: spot.avgRating,
-  // previewImage: spot.previewImage,
-  //   };
+  //   id: spot.id,
+  //   ownerId: spot.ownerId,
+  //   address: spot.address,
+  //   city: spot.city,
+  //   state: spot.state,
+  //   country: spot.country,
+  //   lat: spot.lat,
+  //   lng: spot.lng,
+  //   name: spot.name,
+  //   description: spot.description,
+  //   price: spot.price,
+  //   createdAt: spot.createdAt,
+  //   updatedAt: spot.updatedAt,
+  //   avgRating: spot.avgRating,
+  //   previewImage: spot.previewImage,
+  //     };
 
   return res.json(spot);
 });
 
-router.get("/spot/:id", async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     const spot = await Spot.findByPk(req.params.id, {
-      include: {
-        model: require("../models/SpotImage"),
-        as: "previewImage", // Use the alias defined in the model
-        attributes: ["previewImageUrl"], // Only include the URL of the preview image
-      },
+      //   include: {
+      //     model: require("../../db/models/spotImage"),
+      //     as: "previewImage", // Use the alias defined in the model
+      //     attributes: ["previewImageUrl"], // Only include the URL of the preview image
+      //   },
     });
 
     if (spot) {
@@ -58,7 +57,7 @@ router.get("/spot/:id", async (req, res) => {
   }
 });
 
-router.post("/spots", requireAuth, async (req, res, next) => {
+router.post("/", requireAuth, async (req, res, next) => {
   try {
     // Validate body fields before creating the Spot
     const {
@@ -109,7 +108,7 @@ router.post("/spots", requireAuth, async (req, res, next) => {
 });
 
 router.post(
-  "/:spotId/images",
+  "/:spotId/spotImage",
   requireAuth,
   requireSpotOwnership,
   async (req, res) => {

@@ -50,4 +50,28 @@ router.post("/", validateSignup, async (req, res) => {
   });
 });
 
+router.get("/:id", validateSignup, async (req, res) => {
+  // const hashedPassword = bcrypt.hashSync(password);
+  const user = await User.findByPk(req.params.id);
+
+  // const safeUser = {
+  //   id: user.id,
+  //   firstName: user.firstName,
+  //   lastName: user.lastName,
+  //   email: user.email,
+  //   username: user.username,
+  // };
+
+  // await setTokenCookie(res, safeUser);
+  try {
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    res.json(user);
+  } catch (error) {
+    console.error("Error fetching user:", error);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
 module.exports = router;

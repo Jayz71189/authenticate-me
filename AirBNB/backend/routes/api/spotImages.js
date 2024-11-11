@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const SpotImage = require("../models/spotImage");
+const SpotImage = require("../../db/models");
 
 router.get("/spotImage/:id", async (req, res) => {
   try {
