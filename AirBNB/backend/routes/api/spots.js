@@ -33,7 +33,7 @@ router.get("/", async (req, res) => {
   //   previewImage: spot.previewImage,
   //     };
 
-  return res.json(spot);
+  return res.json({ Spots: spot });
 });
 
 router.get("/:id", async (req, res) => {
