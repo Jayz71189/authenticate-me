@@ -57,6 +57,27 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+router.delete("/:id", async (req, res) => {
+  try {
+    const spot = await Spot.findByPk(req.params.id, {
+      //   include: {
+      //     model: require("../../db/models/spotImage"),
+      //     as: "previewImage", // Use the alias defined in the model
+      //     attributes: ["previewImageUrl"], // Only include the URL of the preview image
+      //   },
+    });
+
+    if (spot) {
+      res.json({ message: "Successfully deleted" }); // The response will now include previewImageUrl
+    } else {
+      res.status(404).json({ message: "Spot couldn't be found" });
+    }
+  } catch (error) {
+    console.error("Error retrieving spot: ", error);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
 router.post("/", requireAuth, async (req, res, next) => {
   try {
     // Validate body fields before creating the Spot
