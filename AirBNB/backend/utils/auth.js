@@ -68,38 +68,38 @@ const requireAuth = function (req, _res, next) {
   return next(err);
 };
 
-const requireSpotOwnership = async (req, res, next) => {
-  const { spotId } = req.params; // Get the spotId from the request parameters
-  const userId = req.user.id; // Assuming req.user is the authenticated user
+// const requireSpotOwnership = async (req, res, next) => {
+//   const { spotId } = req.params; // Get the spotId from the request parameters
+//   const userId = req.user.id; // Assuming req.user is the authenticated user
 
-  try {
-    // Find the spot by ID and check if it belongs to the current user
-    const spot = await Spot.findByPk(spotId);
+//   try {
+//     // Find the spot by ID and check if it belongs to the current user
+//     const spot = await Spot.findByPk(spotId);
 
-    if (!spot) {
-      return res.status(404).json({
-        message: "Spot couldn't be found",
-      });
-    }
+//     if (!spot) {
+//       return res.status(404).json({
+//         message: "Spot couldn't be found",
+//       });
+//     }
 
-    // Check if the spot's owner matches the current user
-    if (spot.ownerId !== userId) {
-      return res
-        .status(403)
-        .json({ message: "Forbidden: You do not own this spot" });
-    }
+//     // Check if the spot's owner matches the current user
+//     if (spot.ownerId !== userId) {
+//       return res
+//         .status(403)
+//         .json({ message: "Forbidden: You do not own this spot" });
+//     }
 
-    // Proceed if the user owns the spot
-    next();
-  } catch (err) {
-    console.error(err);
-    return res.status(500).json({ message: "Internal server error" });
-  }
-};
+//     // Proceed if the user owns the spot
+//     next();
+//   } catch (err) {
+//     console.error(err);
+//     return res.status(500).json({ message: "Internal server error" });
+//   }
+// };
 
 module.exports = {
   setTokenCookie,
   restoreUser,
   requireAuth,
-  requireSpotOwnership,
+  // requireSpotOwnership,
 };

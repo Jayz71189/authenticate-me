@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 const { setTokenCookie, requireAuth } = require("../../utils/auth");
-const { User } = require("../../db/models");
+const { User, Spot } = require("../../db/models");
 
 const router = express.Router();
 
@@ -45,7 +45,7 @@ router.post("/", validateSignup, async (req, res) => {
 
   await setTokenCookie(res, safeUser);
 
-  return res.json({
+  return res.status(201).json({
     user: safeUser,
   });
 });
@@ -73,5 +73,7 @@ router.get("/:id", validateSignup, async (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 });
+
+// router.get("/:id/spots", requireAuth, async (req, res) => {
 
 module.exports = router;
