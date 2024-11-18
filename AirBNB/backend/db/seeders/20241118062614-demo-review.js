@@ -1,6 +1,6 @@
 "use strict";
 
-const { Review, ReviewImages } = require("../models");
+const { Review, ReviewImage } = require("../models");
 
 let options = {};
 if (process.env.NODE_ENV === "production") {
@@ -43,7 +43,7 @@ module.exports = {
         ],
         { validate: true }
       );
-      await queryInterface.bulkInsert("ReviewImages", [
+      await ReviewImage.bulkCreate([
         {
           id: 1,
           reviewId: 1, // Link to the Review with ID 1
@@ -84,8 +84,7 @@ module.exports = {
   async down(queryInterface, Sequelize) {
     options.tableName = "Reviews";
     const Op = Sequelize.Op;
-    await queryInterface.bulkDelete("ReviewImages", null, {});
-    return queryInterface.bulkDelete(
+    await queryInterface.bulkDelete(
       options,
       {
         name: { [Op.in]: ["App Academy", "App Academy 2", "App Academy 3"] },
@@ -98,5 +97,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
+    await queryInterface.bulkDelete("ReviewImages", null, {});
   },
 };
