@@ -35,7 +35,7 @@ router.get("/reviews", async (req, res) => {
             "lng",
             "name",
             "price",
-            "previewImage",
+            "preview",
           ],
         },
         {
