@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   SpotImage.init(
     {
-      Id: {
+      id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
@@ -28,11 +28,12 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: "CASCADE", // If the related spot is deleted, so should the spot image
         onUpdate: "CASCADE", // If the spot ID changes, update the foreign key accordingly
       },
-      spotImage: {
-        type: DataTypes.BLOB("long"), // Stores binary data for the full-size image
+      url: {
+        type: DataTypes.STRING,
+        allowNull: false, // Stores binary data for the full-size image
       },
-      previewImage: {
-        type: DataTypes.STRING, // Stores the URL or path to the preview image
+      preview: {
+        type: DataTypes.BOOLEAN, // Stores the URL or path to the preview image
         allowNull: true,
       },
     },

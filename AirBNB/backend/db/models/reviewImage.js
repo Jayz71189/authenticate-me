@@ -28,10 +28,11 @@ module.exports = (sequelize, DataTypes) => {
         onDelete: "CASCADE", // If the related spot is deleted, so should the spot image
         onUpdate: "CASCADE", // If the spot ID changes, update the foreign key accordingly
       },
-      reviewImage: {
-        type: DataTypes.BLOB("long"), // Stores binary data for the full-size image
+      url: {
+        type: DataTypes.BLOB("long"),
+        allowNull: false, // Stores binary data for the full-size image
       },
-      previewImage: {
+      preview: {
         type: DataTypes.STRING, // Stores the URL or path to the preview image
         allowNull: true,
       },
