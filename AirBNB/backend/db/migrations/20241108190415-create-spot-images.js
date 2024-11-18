@@ -27,21 +27,23 @@ module.exports = {
           onDelete: "CASCADE", // Ensures spotImages are deleted if the Spot is deleted
           onUpdate: "CASCADE",
         },
-        imageUrl: {
+        url: {
           type: Sequelize.STRING,
           allowNull: false,
         },
-        previewImage: {
+        preview: {
           type: Sequelize.BOOLEAN,
           defaultValue: false, // Set default value to false
         },
         createdAt: {
           type: Sequelize.DATE,
           allowNull: false,
+          defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
         },
         updatedAt: {
           type: Sequelize.DATE,
           allowNull: false,
+          defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
         },
       },
       options

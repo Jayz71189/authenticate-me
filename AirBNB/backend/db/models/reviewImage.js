@@ -3,32 +3,32 @@ const { Model } = require("sequelize");
 
 // models/Image.js
 module.exports = (sequelize, DataTypes) => {
-  class SpotImage extends Model {
+  class ReviewImage extends Model {
     static associate(models) {
-      SpotImage.belongsTo(models.Spot, {
-        foreignKey: "spotId", // Foreign key in SpotImages table
-        // as: "spot", // Alias to access the related Spot model
+      ReviewImage.belongsTo(models.Review, {
+        foreignKey: "reviewId", // Foreign key in SpotImages table
+        // as: "Review", // Alias to access the related Spot model
       });
     }
   }
-  SpotImage.init(
+  ReviewImage.init(
     {
       Id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
-      spotId: {
+      reviewId: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-          model: "Spots", // The Spot model that this image is related to
-          key: "id", // The key in the Spots table
+          model: "Reviews", // The Review model that this image is related to
+          key: "id", // The key in the Reviews table
         },
         onDelete: "CASCADE", // If the related spot is deleted, so should the spot image
         onUpdate: "CASCADE", // If the spot ID changes, update the foreign key accordingly
       },
-      spotImage: {
+      reviewImage: {
         type: DataTypes.BLOB("long"), // Stores binary data for the full-size image
       },
       previewImage: {
@@ -38,8 +38,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "SpotImage",
+      modelName: "ReviewImage",
     }
   );
-  return SpotImage;
+  return ReviewImage;
 };

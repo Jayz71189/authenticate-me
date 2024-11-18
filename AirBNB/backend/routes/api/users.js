@@ -74,6 +74,46 @@ router.get("/:id", validateSignup, async (req, res) => {
   }
 });
 
+router.get("/users/:userId/spots", requireAuth, async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    // Fetch spots owned by the user
+    const spots = await Spot.findAll({
+      where: { ownerId: userId },
+      attributes: [
+        "id",
+        "ownerId",
+        "address",
+        "city",
+        "state",
+        "country",
+        "lat",
+        "lng",
+        "name",
+        "description",
+        "price",
+        "createdAt",
+        "updatedAt",
+        // Include calculated fields like avgRating and previewImage
+      ],
+    });
+
+    // Map results to include additional fields like avgRating and previewImage
+    const formattedSpots = spots.map((spot) => ({
+      ...spot.toJSON(),
+      avgRating: 4.5, // Replace with actual average rating calculation if needed
+      previewImage: "image url", // Replace with actual preview image URL if available
+    }));
+
+    // Respond with the spots data
+    return res.status(200).json({ Spots: formattedSpots });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 // router.get("/:id/spots", requireAuth, async (req, res) => {
 
 module.exports = router;
