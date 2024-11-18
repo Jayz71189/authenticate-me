@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   ReviewImage.init(
     {
-      Id: {
+      id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
         onUpdate: "CASCADE", // If the spot ID changes, update the foreign key accordingly
       },
       url: {
-        type: DataTypes.BLOB("long"),
+        type: DataTypes.STRING,
         allowNull: false, // Stores binary data for the full-size image
       },
       preview: {
