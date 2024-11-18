@@ -32,10 +32,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false, // Stores binary data for the full-size image
       },
-      preview: {
-        type: DataTypes.STRING, // Stores the URL or path to the preview image
-        allowNull: true,
-      },
     },
     {
       sequelize,
