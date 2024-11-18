@@ -13,6 +13,7 @@ module.exports = {
     try {
       await SpotImage.bulkCreate([
         {
+          id: 1,
           spotId: 1, // Assuming the spot ID is 1
           url: "https://example.com/image1.jpg",
           preview: true, // Marked as preview image
@@ -20,6 +21,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          id: 2,
           spotId: 2, // Assuming the spot ID is 2
           url: "https://example.com/image2.jpg",
           preview: false, // Not marked as preview
@@ -27,6 +29,7 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
+          id: 3,
           spotId: 3, // Assuming the spot ID is 3
           url: "https://example.com/image3.jpg",
           preview: true, // Marked as preview image
