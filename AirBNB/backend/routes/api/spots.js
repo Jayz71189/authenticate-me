@@ -129,15 +129,15 @@ router.get("/", validateQuery, async (req, res) => {
   //   avgRating: spot.avgRating,
   //   previewImage: spot.previewImage,
   //     };
-  // try {
-  //   const spots = await Spot.findAll();
-  res
-    .status(200)
-    .json({ Spots: spot, page: parseInt(page), size: parseInt(size) });
-  // } catch (error) {
-  //   console.error("Error fetching spots:", error);
-  //   res.status(500).json({ Spots: "Server error" });
-  // }
+  try {
+    const spots = await Spot.findAll();
+    res
+      .status(200)
+      .json({ Spots: spot, page: parseInt(page), size: parseInt(size) });
+  } catch (error) {
+    console.error("Error fetching spots:", error);
+    res.status(500).json({ Spots: "Server error" });
+  }
 });
 
 //Get spots of current user
