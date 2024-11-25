@@ -92,9 +92,9 @@ router.get("/", validateQuery, async (req, res) => {
   if (maxLat) filters.lat = { ...filters.lat, [Op.lte]: parseFloat(maxLat) };
   if (minLng) filters.lng = { [Op.gte]: parseFloat(minLng) };
   if (maxLng) filters.lng = { ...filters.lng, [Op.lte]: parseFloat(maxLng) };
-  if (minPrice) filters.price = { [Op.gte]: parseInt(minPrice) };
+  if (minPrice) filters.price = { [Op.gte]: parseFloat(minPrice) };
   if (maxPrice)
-    filters.price = { ...filters.price, [Op.lte]: parseInt(maxPrice) };
+    filters.price = { ...filters.price, [Op.lte]: parseFloat(maxPrice) };
 
   const limit = Math.min(size, 20); // Enforce max size limit of 20
   const offset = (page - 1) * limit;
