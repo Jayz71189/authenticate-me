@@ -11,9 +11,9 @@ Let's get started!
 
 ## Modal context
 
-First, make a folder in __frontend/src__ called __context__. This folder will
+First, make a folder in **frontend/src** called **context**. This folder will
 hold all the different context and context providers for your application. Add a
-file in the __context__ folder called __Modal.jsx__. Create a React context
+file in the **context** folder called **Modal.jsx**. Create a React context
 called a `ModalContext`.
 
 Create and export a function component called `ModalProvider` that renders the
@@ -28,7 +28,7 @@ will be set to the actual HTML DOM element that gets rendered from the `div`.
 ```jsx
 // frontend/src/context/Modal.jsx
 
-import { useRef, createContext } from 'react';
+import { useRef, createContext } from "react";
 
 const ModalContext = createContext();
 
@@ -51,7 +51,7 @@ as the `value` prop.
 ```jsx
 // frontend/src/context/Modal.jsx
 
-import { useRef, createContext } from 'react';
+import { useRef, createContext } from "react";
 
 const ModalContext = createContext();
 
@@ -101,7 +101,7 @@ export function ModalProvider({ children }) {
     modalRef, // reference to modal div
     modalContent, // React component to render inside modal
     setModalContent, // function to set the React component to render inside modal
-    setOnModalClose // function to set the callback function to be called when modal is closing
+    setOnModalClose, // function to set the callback function to be called when modal is closing
   };
 
   return (
@@ -142,7 +142,7 @@ export function ModalProvider({ children }) {
     modalContent, // React component to render inside modal
     setModalContent, // function to set the React component to render inside modal
     setOnModalClose, // function to set the callback function to be called when modal is closing
-    closeModal // function to close the modal
+    closeModal, // function to close the modal
   };
 
   return (
@@ -156,14 +156,14 @@ export function ModalProvider({ children }) {
 }
 ```
 
-Import the `ModalProvider` component in __frontend/src/main.jsx__ and wrap your
+Import the `ModalProvider` component in **frontend/src/main.jsx** and wrap your
 `App` with it:
 
 ```jsx
 // frontend/src/main.jsx
 
 // ...
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ModalProvider>
       <Provider store={store}>
@@ -174,7 +174,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 );
 ```
 
-Back in the __frontend/src/context/Modal.jsx__ file, create and export a
+Back in the **frontend/src/context/Modal.jsx** file, create and export a
 function component called `Modal`. Export it as a named export.
 
 The `Modal` component should consume the value of the `ModalContext` by using
@@ -211,8 +211,8 @@ Make sure to import `ReactDOM` from the `react-dom` package to be able to use
 the `ReactDOM.createPortal` function in this file.
 
 ```jsx
-import { useRef, useState, useContext, createContext } from 'react';
-import ReactDOM from 'react-dom';
+import { useRef, useState, useContext, createContext } from "react";
+import ReactDOM from "react-dom";
 
 const ModalContext = createContext();
 
@@ -237,7 +237,7 @@ export function ModalProvider({ children }) {
     modalContent, // React component to render inside modal
     setModalContent, // function to set the React component to render inside modal
     setOnModalClose, // function to set the callback function called when modal is closing
-    closeModal // function to close the modal
+    closeModal, // function to close the modal
   };
 
   return (
@@ -267,7 +267,7 @@ export function Modal() {
 }
 ```
 
-Add a CSS file in the __context__ folder called __Modal.css__. The `modal` div
+Add a CSS file in the **context** folder called **Modal.css**. The `modal` div
 should have a `position` `fixed` and take up the entire width and height of the
 window. The `modal-background` should also take up the entire width and height
 of the window and have a `position` `absolute`. The `modal-content` div should
@@ -303,17 +303,17 @@ flexing the `modal` div. You may want to give the `modal-background` a
 }
 ```
 
-Import the __Modal.css__ file into the __Modal.jsx__ context file.
+Import the **Modal.css** file into the **Modal.jsx** context file.
 
 Create and export as a named export a custom React hook called `useModal` that
 can be used by React components to easily consume the `ModalContext`.
 
-Your __Modal.jsx__ file should now look like this:
+Your **Modal.jsx** file should now look like this:
 
 ```jsx
-import { useRef, useState, useContext, createContext } from 'react';
-import ReactDOM from 'react-dom';
-import './Modal.css';
+import { useRef, useState, useContext, createContext } from "react";
+import ReactDOM from "react-dom";
+import "./Modal.css";
 
 const ModalContext = createContext();
 
@@ -338,7 +338,7 @@ export function ModalProvider({ children }) {
     modalContent, // React component to render inside modal
     setModalContent, // function to set the React component to render inside modal
     setOnModalClose, // function to set the callback function called when modal is closing
-    closeModal // function to close the modal
+    closeModal, // function to close the modal
   };
 
   return (
@@ -372,7 +372,7 @@ export const useModal = () => useContext(ModalContext);
 
 Your linter will complain that "Fast refresh only works when a file only exports
 components." To turn that warning off for this file, add the following
-`overrides` key to the `module.exports` object in __.eslintrc.cjs__:
+`overrides` key to the `module.exports` object in **.eslintrc.cjs**:
 
 ```js
 overrides: [
@@ -387,29 +387,29 @@ overrides: [
 ],
 ```
 
-You also need to make one last adjustment to __frontend/src/main.jsx__ to be
+You also need to make one last adjustment to **frontend/src/main.jsx** to be
 able to use the modal. Import the `Modal` component from the
-__frontend/src/context/Modal.jsx__ file and render it as a sibling right under
+**frontend/src/context/Modal.jsx** file and render it as a sibling right under
 the `App` component.
 
-Your __frontend/src/main.jsx__ should look something like this:
+Your **frontend/src/main.jsx** should look something like this:
 
 ```jsx
 // frontend/src/main.jsx
 
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import './index.css';
-import { Provider } from 'react-redux';
-import configureStore from './store';
-import { restoreCSRF, csrfFetch } from './store/csrf';
-import * as sessionActions from './store/session';
-import { Modal, ModalProvider } from './context/Modal';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import "./index.css";
+import { Provider } from "react-redux";
+import configureStore from "./store";
+import { restoreCSRF, csrfFetch } from "./store/csrf";
+import * as sessionActions from "./store/session";
+import { Modal, ModalProvider } from "./context/Modal";
 
 const store = configureStore();
 
-if (import.meta.env.MODE !== 'production') {
+if (import.meta.env.MODE !== "production") {
   restoreCSRF();
 
   window.csrfFetch = csrfFetch;
@@ -417,7 +417,7 @@ if (import.meta.env.MODE !== 'production') {
   window.sessionActions = sessionActions;
 }
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ModalProvider>
       <Provider store={store}>
@@ -434,8 +434,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 The `OpenModalButton` component should be a generic button that can be used to
 trigger a modal with any content to open.
 
-Make a folder in __frontend/src/components__ called __OpenModalButton__. Create
-an __OpenModalButton.jsx__ file (and accompanying __index.js__ if you wish) in
+Make a folder in **frontend/src/components** called **OpenModalButton**. Create
+an **OpenModalButton.jsx** file (and accompanying **index.js** if you wish) in
 this folder that will hold the code for the `OpenModalButton` component.
 
 Create and export a function component called `OpenModalButton` that takes in
@@ -467,13 +467,13 @@ The `OpenModalButton` component should now look something like this:
 ```jsx
 // frontend/src/components/OpenModalButton/OpenModalButton.jsx
 
-import { useModal } from '../../context/Modal';
+import { useModal } from "../../context/Modal";
 
 function OpenModalButton({
   modalComponent, // component to render inside the modal
   buttonText, // text of the button that opens the modal
   onButtonClick, // optional: callback function that will be called once the button that opens the modal is clicked
-  onModalClose // optional: callback function that will be called once the modal is closed
+  onModalClose, // optional: callback function that will be called once the modal is closed
 }) {
   const { setModalContent, setOnModalClose } = useModal();
 
@@ -560,17 +560,17 @@ of a page.
 
 Begin by removing the `LoginFormPage` component from the `App` component.
 
-Here's an example of what __App.jsx__ should look like now:
+Here's an example of what **App.jsx** should look like now:
 
 ```jsx
 // frontend/src/App.jsx
 
-import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
-import SignupFormPage from './components/SignupFormPage';
-import Navigation from './components/Navigation';
-import * as sessionActions from './store/session';
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import SignupFormPage from "./components/SignupFormPage";
+import Navigation from "./components/Navigation";
+import * as sessionActions from "./store/session";
 
 function Layout() {
   const dispatch = useDispatch();
@@ -578,7 +578,7 @@ function Layout() {
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => {
-      setIsLoaded(true)
+      setIsLoaded(true);
     });
   }, [dispatch]);
 
@@ -595,15 +595,15 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       {
-        path: '/',
-        element: <h1>Welcome!</h1>
+        path: "/",
+        element: <h1>Welcome!</h1>,
       },
       {
         path: "signup",
-        element: <SignupFormPage />
-      }
-    ]
-  }
+        element: <SignupFormPage />,
+      },
+    ],
+  },
 ]);
 
 function App() {
@@ -624,16 +624,16 @@ login modal should close. To do this, the `LoginFormModal` should consume the
 `ModalContext`'s `closeModal` value and invoke the `closeModal` function when
 the `login` action is successful.
 
-Here's an example of what __LoginFormModal/LoginFormModal.jsx__ could look like:
+Here's an example of what **LoginFormModal/LoginFormModal.jsx** could look like:
 
 ```jsx
 // frontend/src/components/LoginFormModal/LoginFormModal.jsx
 
-import { useState } from 'react';
-import * as sessionActions from '../../store/session';
-import { useDispatch } from 'react-redux';
-import { useModal } from '../../context/Modal';
-import './LoginForm.css';
+import { useState } from "react";
+import * as sessionActions from "../../store/session";
+import { useDispatch } from "react-redux";
+import { useModal } from "../../context/Modal";
+import "./LoginForm.css";
 
 function LoginFormModal() {
   const dispatch = useDispatch();
@@ -677,9 +677,7 @@ function LoginFormModal() {
             required
           />
         </label>
-        {errors.credential && (
-          <p>{errors.credential}</p>
-        )}
+        {errors.credential && <p>{errors.credential}</p>}
         <button type="submit">Log In</button>
       </form>
     </>
@@ -702,12 +700,12 @@ Here's an example of what the `Navigation` component could look like now:
 ```jsx
 // frontend/src/components/Navigation/Navigation.jsx
 
-import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import ProfileButton from './ProfileButton';
-import OpenModalButton from '../OpenModalButton';
-import LoginFormModal from '../LoginFormModal';
-import './Navigation.css';
+import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
+import ProfileButton from "./ProfileButton";
+import OpenModalButton from "../OpenModalButton";
+import LoginFormModal from "../LoginFormModal";
+import "./Navigation.css";
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
@@ -759,11 +757,11 @@ just turned the `LoginFormPage` into a `LoginFormModal`!
 Here's an example of what the `App` component could look like now:
 
 ```jsx
-import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
-import Navigation from './components/Navigation';
-import * as sessionActions from './store/session';
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import Navigation from "./components/Navigation";
+import * as sessionActions from "./store/session";
 
 function Layout() {
   const dispatch = useDispatch();
@@ -771,7 +769,7 @@ function Layout() {
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => {
-      setIsLoaded(true)
+      setIsLoaded(true);
     });
   }, [dispatch]);
 
@@ -788,11 +786,11 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       {
-        path: '/',
-        element: <h1>Welcome!</h1>
-      }
-    ]
-  }
+        path: "/",
+        element: <h1>Welcome!</h1>,
+      },
+    ],
+  },
 ]);
 
 function App() {
@@ -803,14 +801,14 @@ export default App;
 ```
 
 Here's an example of what
-__frontend/src/components/SignupFormModal/SignupFormModal.jsx__ could look like:
+**frontend/src/components/SignupFormModal/SignupFormModal.jsx** could look like:
 
 ```jsx
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useModal } from '../../context/Modal';
-import * as sessionActions from '../../store/session';
-import './SignupForm.css';
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useModal } from "../../context/Modal";
+import * as sessionActions from "../../store/session";
+import "./SignupForm.css";
 
 function SignupFormModal() {
   const dispatch = useDispatch();
@@ -833,19 +831,18 @@ function SignupFormModal() {
           username,
           firstName,
           lastName,
-          password
+          password,
         })
-      )
-        .then(closeModal)
-        .catch(async (res) => {
-          const data = await res.json();
-          if (data?.errors) {
-            setErrors(data.errors);
-          }
-        });
+      ).catch(async (res) => {
+        const data = await res.json();
+        if (data?.errors) {
+          setErrors(data.errors);
+        }
+      });
     }
     return setErrors({
-      confirmPassword: "Confirm Password field must be the same as the Password field"
+      confirmPassword:
+        "Confirm Password field must be the same as the Password field",
     });
   };
 
@@ -912,9 +909,7 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.confirmPassword && (
-          <p>{errors.confirmPassword}</p>
-        )}
+        {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
         <button type="submit">Sign Up</button>
       </form>
     </>
